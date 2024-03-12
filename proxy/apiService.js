@@ -1,12 +1,13 @@
-// apiService.js
 const axios = require('axios');
-const config = require('./config');
 
 const fetchData = async () => {
-  const response = await axios.get(config.get('api_url'));
-  return response.data;
+  try {
+    const response = await axios.get('http://localhost:3000'); // Використовуйте API_URL з .env
+    return response.data;
+  } catch (error) {
+    console.error("Error making request to API:", error);
+    throw error;
+  }
 };
 
-module.exports = {
-  fetchData,
-};
+module.exports = { fetchData };
